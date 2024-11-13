@@ -1,0 +1,126 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "airbnb/base"
+  ],
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
+    }
+  },
+  "rules": {
+    "indent": "off",
+    "array-callback-return": "off",
+    "no-nested-ternary": "off",
+    "no-await-in-loop": "off",
+    "no-undef": "off",
+    "operator-linebreak": "off",
+    "arrow-body-style": "off",
+    "consistent-return": "off",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/member-ordering": "error",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "import/consistent-type-specifier-style": [
+      "error",
+      "prefer-top-level"
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      },
+      {
+        "usePrettierrc": true
+      }
+    ],
+    "no-else-return": "off",
+    "no-shadow": "off",
+    "no-param-reassign": "off",
+    "object-curly-newline": "off",
+    "default-case": "off",
+    "quotes": "off",
+    "import/extensions": "off",
+    "import/exports-last": "error",
+    "import/first": "error",
+    "import/group-exports": "error",
+    "import/newline-after-import": "error",
+    "import/no-commonjs": "error",
+    "import/no-cycle": "error",
+    "import/no-deprecated": "warn",
+    "import/no-default-export": "error",
+    "import/no-duplicates": "error",
+    "import/no-empty-named-blocks": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-self-import": "error",
+    "import/prefer-default-export": "off",
+    "import/no-unused-modules": [
+      "error",
+      {
+        "missingExports": true
+      }
+    ],
+    "import/no-useless-path-segments": "error",
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "groups": [
+          "external",
+          "internal",
+          [
+            "parent",
+            "sibling",
+            "index"
+          ]
+        ],
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "group": "parent",
+            "pattern": "@/**",
+            "position": "before"
+          }
+        ]
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "node_modules"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "src/**/index.ts"
+      ],
+      "rules": {
+        "import/no-unused-modules": "off"
+      }
+    }
+  ]
+}

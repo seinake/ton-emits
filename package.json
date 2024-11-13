@@ -1,0 +1,52 @@
+{
+  "name": "@ton/emits",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "scripts": {
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "nuke": "rm -rf node_modules yarn.lock && yarn cache clean --all && yarn && yarn upgrade",
+    "precommit": "lint-staged",
+    "commitlint": "commitlint --edit",
+    "postinstall": "yarn husky",
+    "prepare": "yarn husky"
+  },
+  "husky": {
+    "hooks": {
+      ".husky/pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --ext .ts,.tsx,.js --fix"
+    ]
+  },
+  "dependencies": {
+    "@ton/core": "^0.59.0",
+    "@ton/crypto": "^3.3.0",
+    "@ton/ton": "^15.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@types/node": "^22.9.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.14.0"
+  }
+}
