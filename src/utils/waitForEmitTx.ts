@@ -1,7 +1,7 @@
 import type { Address } from "@ton/core";
 import type { TonClient, Transaction } from "@ton/ton";
 
-import { getEmitTxMessage } from "./getEmitTxMessage";
+import { getEmitTx } from "./getEmitTx";
 
 type Props = {
     address: Address;
@@ -9,7 +9,7 @@ type Props = {
     refetchLimit?: number;
 };
 
-const waitForEmitTx = async (options: Props, client: TonClient): Promise<Transaction | null> => {
+const waitForEmitTx = async (client: TonClient, options: Props): Promise<Transaction | null> => {
     const { refetchInterval = 1000, refetchLimit, address } = options;
 
     return new Promise((resolve) => {
@@ -28,7 +28,7 @@ const waitForEmitTx = async (options: Props, client: TonClient): Promise<Transac
             const lastTx = await client.getTransaction(address, lt, hash);
 
             if (lastTx) {
-                const { message } = getEmitTxMessage(lastTx);
+                const { message } = getEmitTx(lastTx);
                 if (message) {
                     clearInterval(interval);
                     resolve(lastTx);

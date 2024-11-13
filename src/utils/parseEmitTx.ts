@@ -1,12 +1,13 @@
 import type { Slice, Transaction } from "@ton/ton";
 
-import { getEmitTxMessage } from "./getEmitTxMessage";
+import { getEmitTx } from "./getEmitTx";
 
-const parseEmitTx = <T>(tx: Transaction, event: (slice: Slice) => T) => {
-    const { message } = getEmitTxMessage(tx);
+const parseEmitTx = <T>(tx: Transaction, loader: (slice: Slice) => T): T | undefined => {
+    const { message } = getEmitTx(tx);
     if (message) {
-        const outMessageSlice = message.body.beginParse();
-        return event(outMessageSlice);
+        const { body } = message;
+        const slice = body.beginParse();
+        return loader(slice);
     }
 };
 
