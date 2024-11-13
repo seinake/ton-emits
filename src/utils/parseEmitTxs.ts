@@ -3,6 +3,7 @@ import type { Transaction } from "@ton/core";
 import type { Loader } from "@/types";
 
 import { parseEmitTx } from "./parseEmitTx";
+import { parseEmitTxMessages } from "./parseEmitTxMessages";
 
 const parseEmitTxs = <TLoader>(
     txs: Transaction[],
@@ -12,8 +13,8 @@ const parseEmitTxs = <TLoader>(
     const data: TLoader[] = [];
 
     txs.forEach((tx) => {
-        const messages = tx.outMessages.values();
-        return messages.some((message) => {
+        const message = parseEmitTxMessages(tx);
+        if (message) {
             const { body } = message;
             const { type } = message.info;
             const slice = body.beginParse();
@@ -23,7 +24,7 @@ const parseEmitTxs = <TLoader>(
                     data.push(emit);
                 }
             }
-        });
+        }
     });
 
     return data;
