@@ -1,24 +1,14 @@
-import type { Address, Transaction } from "@ton/core";
 import type { TonClient } from "@ton/ton";
 import { useState, useEffect } from "react";
 
 import { getEmits } from "@/core";
+import type { TransactionsProps, WithLoader } from "@/types";
 
-type Props = {
-    address: Address;
-    header: number;
-    opts: {
-        limit: number;
-        lt?: string;
-        hash?: string;
-        to_lt?: string;
-        inclusive?: boolean;
-        archival?: boolean;
-    };
-};
-
-const useGetEmitsTx = (client: TonClient, options: Props) => {
-    const [data, setData] = useState<Transaction[]>();
+const useGetEmitsTx = <TLoader>(
+    client: TonClient,
+    options: WithLoader<TransactionsProps, TLoader>,
+) => {
+    const [data, setData] = useState<TLoader[]>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error>();
 

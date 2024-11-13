@@ -1,17 +1,14 @@
-import type { Address, Transaction } from "@ton/core";
 import type { TonClient } from "@ton/ton";
 import { useState, useEffect } from "react";
 
 import { getLastEmit } from "@/core";
+import type { TransactionWaitProps, WithLoader } from "@/types";
 
-type Props = {
-    address: Address;
-    refetchInterval?: number;
-    refetchLimit?: number;
-};
-
-const useGetLastEmitTx = (client: TonClient, options: Props) => {
-    const [data, setData] = useState<Transaction>();
+const useGetLastEmitTx = <TLoader>(
+    client: TonClient,
+    options: WithLoader<TransactionWaitProps, TLoader>,
+) => {
+    const [data, setData] = useState<TLoader>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error>();
 

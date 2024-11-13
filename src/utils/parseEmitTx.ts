@@ -1,9 +1,11 @@
-import type { Slice, Transaction } from "@ton/ton";
+import type { Transaction } from "@ton/ton";
 
-import { getEmitTx } from "./getEmitTx";
+import type { Loader } from "@/types";
 
-const parseEmitTx = <T>(tx: Transaction, loader: (slice: Slice) => T): T | undefined => {
-    const { message } = getEmitTx(tx);
+import { parseEmitTxMessages } from "./parseEmitTxMessages";
+
+const parseEmitTx = <TLoader>(tx: Transaction, loader: Loader<TLoader>): TLoader | undefined => {
+    const message = parseEmitTxMessages(tx);
     if (message) {
         const { body } = message;
         const slice = body.beginParse();

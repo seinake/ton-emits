@@ -1,23 +1,19 @@
-import type { Address } from "@ton/core";
 import type { TonClient } from "@ton/ton";
 
-import { getEmitTx } from "@/utils";
+import type { TransactionProps, WithLoader } from "@/types";
+import { isTxEmit, parseEmitTx } from "@/utils";
 
-type Props = {
-    address: Address;
-    lt: string;
-    hash: string;
-};
-
-const getEmit = async (client: TonClient, options: Props) => {
+const getEmit = async <TLoader>(
+    client: TonClient,
+    options: WithLoader<TransactionProps, TLoader>,
+) => {
     const { address, lt, hash } = options;
 
     try {
         const tx = await client.getTransaction(address, lt, hash);
         if (tx) {
-            const { isEmit } = getEmitTx(tx);
-            if (isEmit) {
-                return tx;
+            if (isTxEmit(tx)) {
+                return parseEmitTx(tx, options.loader);
             }
         }
     } catch (error) {
