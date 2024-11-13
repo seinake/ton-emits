@@ -3,4 +3,3 @@ node_modules/*
 .eslintrc
 commitlint.config.ts
 eslint-custom-rules/*
-src/index.ts
