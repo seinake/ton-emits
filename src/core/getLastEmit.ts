@@ -9,10 +9,8 @@ const getLastEmit = async <TLoader>(
 ) => {
     try {
         const tx = await waitForEmitTx(client, options);
-        if (tx) {
-            if (isTxEmit(tx)) {
-                return parseEmitTx(tx, options.loader);
-            }
+        if (tx && isTxEmit(tx)) {
+            return parseEmitTx(tx, options.loader);
         }
     } catch (error) {
         if (error instanceof Error) {
