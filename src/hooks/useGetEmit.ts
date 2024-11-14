@@ -14,7 +14,6 @@ import { useAsyncEffect } from "./useAsyncEffect";
  * @param options - The options for fetching the transaction, including loader and transaction properties.
  * @returns An object containing the fetched data, loading state, and any encountered error.
  */
-
 const useGetEmit = <TLoader>(
     client: TonClient,
     options: TransactionLoaderProps<TLoader> & Hook,
