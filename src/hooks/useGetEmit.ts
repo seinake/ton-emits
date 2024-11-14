@@ -6,7 +6,7 @@ import type { Hook, TransactionLoaderProps } from "@/types";
 
 import { useAsyncEffect } from "./useAsyncEffect";
 
-const useGetEmitTx = <TLoader>(
+const useGetEmit = <TLoader>(
     client: TonClient,
     options: TransactionLoaderProps<TLoader> & Hook,
 ) => {
@@ -39,4 +39,4 @@ const useGetEmitTx = <TLoader>(
     };
 };
 
-export { useGetEmitTx };
+export { useGetEmit };

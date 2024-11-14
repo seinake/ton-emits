@@ -1,6 +1,6 @@
 export { getEmit, getEmits, getLastEmit } from "./core";
 
-export { useGetEmitTx, useGetEmitsTx, useGetLastEmitTx } from "./hooks";
+export { useGetEmit, useGetEmits, useGetLastEmit } from "./hooks";
 
 export { parseEmitTx, parseEmitTxs, isTxEmit, waitForEmitTx } from "./utils";
 

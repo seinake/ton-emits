@@ -1,16 +1,16 @@
 import type { TonClient } from "@ton/ton";
 import { useState } from "react";
 
-import { getLastEmit } from "@/core";
-import type { Hook, TransactionWaitLoaderProps } from "@/types";
+import { getEmits } from "@/core";
+import type { Hook, TransactionsLoaderProps } from "@/types";
 
 import { useAsyncEffect } from "./useAsyncEffect";
 
-const useGetLastEmitTx = <TLoader>(
+const useGetEmits = <TLoader>(
     client: TonClient,
-    options: TransactionWaitLoaderProps<TLoader> & Hook,
+    options: TransactionsLoaderProps<TLoader> & Hook,
 ) => {
-    const [data, setData] = useState<TLoader>();
+    const [data, setData] = useState<TLoader[]>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error>();
 
@@ -18,7 +18,7 @@ const useGetLastEmitTx = <TLoader>(
         if (typeof options.enabled !== "undefined" && !options.enabled) return;
         try {
             setLoading(true);
-            const result = await getLastEmit(client, options);
+            const result = await getEmits(client, options);
             if (result) {
                 setData(result);
             }
@@ -39,4 +39,4 @@ const useGetLastEmitTx = <TLoader>(
     };
 };
 
-export { useGetLastEmitTx };
+export { useGetEmits };

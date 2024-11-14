@@ -1,3 +1,3 @@
-export * from "./useGetEmitsTx";
-export * from "./useGetEmitTx";
-export * from "./useGetLastEmitTx";
+export * from "./useGetEmits";
+export * from "./useGetEmit";
+export * from "./useGetLastEmit";
