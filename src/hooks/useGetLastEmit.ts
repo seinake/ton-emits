@@ -16,7 +16,10 @@ import { useAsyncEffect } from "./useAsyncEffect";
  */
 const useGetLastEmit = <TLoader>(
     client: TonClient,
-    options: TransactionWaitLoaderProps<TLoader> & Hook,
+    options: TransactionWaitLoaderProps<TLoader> &
+        Hook & {
+            func?: () => Promise<void> | void;
+        },
 ) => {
     const [data, setData] = useState<TLoader>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -24,6 +27,9 @@ const useGetLastEmit = <TLoader>(
 
     useAsyncEffect(async () => {
         if (typeof options.enabled !== "undefined" && !options.enabled) return;
+        if (options.func) {
+            await options.func();
+        }
         try {
             setLoading(true);
             const result = await getLastEmit(client, options);
