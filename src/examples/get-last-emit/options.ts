@@ -2,14 +2,22 @@ import { Address } from "@ton/core";
 
 import { loadEmitTest } from "../wrapper";
 
+// Options for method invocation
 const options = {
-    address: Address.parse("kQDW0Z9lJ07cFn08-MK9V5ggrOE7eya67tN4IHTAg28zANSJ"),
+    // The address of the contract, parsed from a string
+    address: Address.parse(""), // Replace with a valid address string
+    // The loader function used to process data
     loader: loadEmitTest,
 };
 
+// Options for use within a hook
 const hookOptions = {
-    address: Address.parse("kQDW0Z9lJ07cFn08-MK9V5ggrOE7eya67tN4IHTAg28zANSJ"),
+    // The address of the contract
+    address: Address.parse(""), // Replace with a valid address string
+    // The loader function
     loader: loadEmitTest,
+    // Flag indicating whether the hook is enabled
     enabled: true,
 };
+
 export { options, hookOptions };
