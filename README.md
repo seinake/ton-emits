@@ -1,6 +1,6 @@
 # TON Emits
 
-This repository contains Utilities and React hooks for fetching off-chain data from smart contract emits in the TON blockchain.
+This repository contains React hooks and utilities for fetching off-chain data from smart contract emits in the TON blockchain.
 
 ## Examples
 
