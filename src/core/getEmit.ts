@@ -1,12 +1,9 @@
 import type { TonClient } from "@ton/ton";
 
-import type { TransactionProps, WithLoader } from "@/types";
+import type { TransactionLoaderProps } from "@/types";
 import { isTxEmit, parseEmitTx } from "@/utils";
 
-const getEmit = async <TLoader>(
-    client: TonClient,
-    options: WithLoader<TransactionProps, TLoader>,
-) => {
+const getEmit = async <TLoader>(client: TonClient, options: TransactionLoaderProps<TLoader>) => {
     const { address, lt, hash } = options;
 
     try {

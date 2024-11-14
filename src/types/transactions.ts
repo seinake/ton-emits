@@ -1,5 +1,7 @@
 import type { Address } from "@ton/core";
 
+import type { WithLoader } from "./loader";
+
 type TransactionsProps = {
     address: Address;
     header: number;
@@ -13,4 +15,6 @@ type TransactionsProps = {
     };
 };
 
-export type { TransactionsProps };
+type TransactionsLoaderProps<TLoader> = WithLoader<TransactionsProps, TLoader>;
+
+export type { TransactionsProps, TransactionsLoaderProps };

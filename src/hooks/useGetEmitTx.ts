@@ -2,14 +2,11 @@ import type { TonClient } from "@ton/ton";
 import { useState } from "react";
 
 import { getEmit } from "@/core";
-import type { TransactionProps, WithLoader } from "@/types";
+import type { TransactionLoaderProps } from "@/types";
 
 import { useAsyncEffect } from "./useAsyncEffect";
 
-const useGetEmitTx = <TLoader>(
-    client: TonClient,
-    options: WithLoader<TransactionProps, TLoader>,
-) => {
+const useGetEmitTx = <TLoader>(client: TonClient, options: TransactionLoaderProps<TLoader>) => {
     const [data, setData] = useState<TLoader>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error>();
