@@ -2,19 +2,20 @@ import type { TonClient } from "@ton/ton";
 import { useState } from "react";
 
 import { getLastEmit } from "@/core";
-import type { TransactionWaitLoaderProps } from "@/types";
+import type { Hook, TransactionWaitLoaderProps } from "@/types";
 
 import { useAsyncEffect } from "./useAsyncEffect";
 
 const useGetLastEmitTx = <TLoader>(
     client: TonClient,
-    options: TransactionWaitLoaderProps<TLoader>,
+    options: TransactionWaitLoaderProps<TLoader> & Hook,
 ) => {
     const [data, setData] = useState<TLoader>();
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error>();
 
     useAsyncEffect(async () => {
+        if (typeof options.enabled !== "undefined" && !options.enabled) return;
         try {
             setLoading(true);
             const result = await getLastEmit(client, options);

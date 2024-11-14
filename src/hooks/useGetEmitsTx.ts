@@ -15,6 +15,7 @@ const useGetEmitsTx = <TLoader>(
     const [error, setError] = useState<Error>();
 
     useAsyncEffect(async () => {
+        if (typeof options.enabled !== "undefined" && !options.enabled) return;
         try {
             setLoading(true);
             const result = await getEmits(client, options);
