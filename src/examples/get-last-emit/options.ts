@@ -11,8 +11,5 @@ const hookOptions = {
     address: Address.parse("kQDW0Z9lJ07cFn08-MK9V5ggrOE7eya67tN4IHTAg28zANSJ"),
     loader: loadEmitTest,
     enabled: true,
-    func: () => {
-        console.log("func");
-    },
 };
 export { options, hookOptions };
