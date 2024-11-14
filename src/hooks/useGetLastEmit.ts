@@ -6,6 +6,14 @@ import type { Hook, TransactionWaitLoaderProps } from "@/types";
 
 import { useAsyncEffect } from "./useAsyncEffect";
 
+/**
+ * Hook to fetch the most recent emitted transaction and manage its loading state.
+ *
+ * @template TLoader - The type of the data returned by the loader.
+ * @param client - The `TonClient` instance used to interact with the blockchain.
+ * @param options - The options for fetching the transaction, including loader and transaction properties.
+ * @returns An object containing the fetched data, loading state, and any encountered error.
+ */
 const useGetLastEmit = <TLoader>(
     client: TonClient,
     options: TransactionWaitLoaderProps<TLoader> & Hook,

@@ -47,6 +47,14 @@
     "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/member-ordering": "error",
     "@typescript-eslint/ban-types": "off",
+    "max-len": [
+      "error", 
+      { 
+        "code": 100, 
+        "ignoreComments": true, 
+        "ignoreStrings": true
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -131,6 +139,14 @@
       ],
       "rules": {
         "import/no-unused-modules": "off"
+      }
+    },
+    {
+      "files": [
+        "src/examples/**"
+      ],
+      "rules": {
+        "no-console": "off"
       }
     }
   ]
