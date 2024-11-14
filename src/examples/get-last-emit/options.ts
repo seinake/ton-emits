@@ -2,15 +2,13 @@ import { Address } from "@ton/core";
 
 import { loadEmitTest } from "../wrapper";
 
-// Options for method invocation
 const options = {
-    // The address of the contract, parsed from a string
+    // The address of the contract
     address: Address.parse(""), // Replace with a valid address string
-    // The loader function used to process data
+    // The loader function
     loader: loadEmitTest,
 };
 
-// Options for use within a hook
 const hookOptions = {
     // The address of the contract
     address: Address.parse(""), // Replace with a valid address string
