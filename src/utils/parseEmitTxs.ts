@@ -9,7 +9,7 @@ const parseEmitTxs = <TLoader>(
     txs: Transaction[],
     header: number,
     loader: Loader<TLoader>,
-): TLoader[] | undefined => {
+): TLoader[] => {
     const data: TLoader[] = [];
 
     txs.forEach((tx) => {
